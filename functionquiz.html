@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                font-family: sans-serif;
+                padding: 1rem;
+                background-color: white;
+            }
+            /* +++ 新增高亮样式 +++ */
+            mark {
+                background-color: #fff8dc;
+                padding: 2px 4px;
+                border-radius: 3px;
+                font-weight: 500;
+            }
+            .view-results {
+                padding: 1rem;
+                cursor: pointer;
+                font-size: inherit;
+                color: white;
+                background: teal;
+                border-radius: 8px;
+                margin-right: 5px;
+            }
+            .my-results {
+                padding: 1rem;
+                border: 1px solid goldenrod;
+            }    
+        </style>
+        <script>
+            // 保持原有JavaScript完全不变
+            var answers = ["D", "A", "A"],
+                tot = answers.length;
+
+            function getCheckedValue(radioName) {
+                var radios = document.getElementsByName(radioName);
+                for (var y = 0; y < radios.length; y++)
+                    if (radios[y].checked) return radios[y].value;
+            }
+
+            function getScore() {
+                var score = 0;
+                for (var i = 0; i < tot; i++)
+                    if (getCheckedValue("question" + i) === answers[i]) score += 1;
+                return score;
+            }
+
+            function returnScore() {
+                document.getElementById("myresults").innerHTML =
+                    "Your score is " + getScore() + "/" + tot;
+                if (getScore() > 2) {
+                    console.log("Bravo");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <script>
+            // 保持视频控制脚本不变
+            function MyVideo(){
+                document.getElementById("Video").play();   
+            }
+            function MyVideoP(){
+                document.getElementById("Video").pause();   
+            }
+        </script>
+
+        <center>
+            <h1>Quiz for Linear Function</h1><h3>---made by Liu Jieman</h3><br>
+            <table border="1" width="650">
+                <tr align="center">
+                    <td>
+                        <video src="video.mp4" width="320" id="Video"></video><br>
+                        <button onClick="MyVideo()">Play</button>
+                        <button onClick="MyVideoP()">Pause</button><br>
+                        <h4>1. Which of the following statements is true regarding the function：<mark>y=kx+b</mark> in the <mark>graph</mark>?</h4>
+                    </td>
+                    <td align="left">
+                        A<input type="radio" name="question0" value="A">
+                        <span>k is less than 0 and the value of k decreases</span><br>
+                        B<input type="radio" name="question0" value="B" />
+                        <span>k is greater than 0 and the value of k decreases</span><br>
+                        C<input type="radio" name="question0" value="C" />
+                        <span>k is less than 0 and the value of k increases</span><br>
+                        D<input type="radio" name="question0" value="D" />
+                        <span>k is greater than 0 and the value of k increases</span>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td><h4>2. If the equation of a line is <mark>y = 2x + 3</mark>, what is the <mark>y-intercept</mark> of the line?</h4></td>
+                    <td align="left">
+                        A<input type="radio" name="question1" value="A">
+                        <span>3</span><br>
+                        B<input type="radio" name="question1" value="B" />
+                        <span>2</span><br>
+                        C<input type="radio" name="question1" value="C" />
+                        <span>5</span><br>
+                        D<input type="radio" name="question1" value="D" />
+                        <span>6</span>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td><h4>3.What is the <mark>expression</mark> for this function?</h4><br><img src='linear.jpg' width="250"></td>
+                    <td align="left">
+                        A<input type="radio" name="question2" value="A">
+                        <span>y = 2x + 1</span><br>
+                        B<input type="radio" name="question2" value="B">
+                        <span>y = -2x + 1</span><br>
+                        C<input type="radio" name="question2" value="C">
+                        <span>y = 2x - 1</span><br>
+                        D<input type="radio" name="question2" value="D">
+                        <span>y = -2x - 1</span>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <button class="view-results" onclick="returnScore()">View Results</button>
+            <span id="myresults" class="my-results">My results will appear here</span>
+        </center>
+    </body>
+</html>
